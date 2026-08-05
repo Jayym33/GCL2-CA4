@@ -2,52 +2,73 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    [Header("Gun Settings")]
+    [Header("Bullet Settings")]
+    // The bullet prefab that will be spawned when firing
     public GameObject bulletPrefab;
-    public float bulletSpeed = 50f;
-    public float fireRate = 3f;
-    public int maxAmmo = 15;
 
+    [Header("Weapon Stats")]
+    // Speed at which the bullet travels
+    public float bulletSpeed = 40f;
+
+    // Number of shots the gun can fire per second
+    public float fireRate = 3f;
+
+    // Maximum bullets in one magazine
+    public int magazineSize = 15;
+
+    // Stores the next time the gun is allowed to shoot
+    private float nextFireTime;
+
+    // Tracks the current amount of ammo remaining
     private int currentAmmo;
-    private float nextFireTime = 0f;
 
     void Start()
     {
-        currentAmmo = maxAmmo;
+        // Fill the magazine when the game starts
+        currentAmmo = magazineSize;
     }
 
     void Update()
     {
-        // Left Mouse Button
+        // Check if the left mouse button is being held
+        // and if enough time has passed before firing again
         if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
         {
-            Shoot();
-            nextFireTime = Time.time + 1f / fireRate;
+            Fire();
+
+            // Calculate the next available firing time
+            nextFireTime = Time.time + (1f / fireRate);
         }
     }
 
-    void Shoot()
+    // Handles the shooting behaviour
+    void Fire()
     {
+        // Prevent shooting if no ammo is left
         if (currentAmmo <= 0)
         {
-            Debug.Log("Out of ammo!");
+            Debug.Log("Out of Ammo!");
             return;
         }
 
+        // Reduce ammo by one
         currentAmmo--;
 
+        // Create a new bullet at the gun's position
         GameObject bullet = Instantiate(
             bulletPrefab,
             transform.position,
             transform.rotation);
 
+        // Get the Rigidbody attached to the bullet
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
 
+        // Launch the bullet forward
         if (rb != null)
         {
             rb.linearVelocity = transform.forward * bulletSpeed;
         }
 
-        Debug.Log("Bang! Ammo left: " + currentAmmo);
+        Debug.Log("Bang! Ammo Left: " + currentAmmo);
     }
 }
