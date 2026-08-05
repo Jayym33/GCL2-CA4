@@ -119,8 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
-<<<<<<< HEAD
-=======
 --- !u!1001 &3492175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -182,7 +180,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7147dfd1cdff1f044bac4d8a244a3ad0, type: 3}
->>>>>>> parent of fa27eb9 (Merge branch 'house-')
 --- !u!1 &3993973
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,8 +1057,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20645099}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
-<<<<<<< HEAD
-=======
 --- !u!1001 &29134185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1119,7 +1114,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 423a9adca69b7c843832a72180f14581, type: 3}
->>>>>>> parent of fa27eb9 (Merge branch 'house-')
 --- !u!1 &30962381
 GameObject:
   m_ObjectHideFlags: 0
@@ -10124,8 +10118,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 281276539}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
-<<<<<<< HEAD
-=======
 --- !u!1001 &287237444
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10183,7 +10175,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24669ef3756f79748bc4fe079d7e4ddb, type: 3}
->>>>>>> parent of fa27eb9 (Merge branch 'house-')
 --- !u!1 &287871489
 GameObject:
   m_ObjectHideFlags: 0
@@ -20522,8 +20513,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 607785633}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
-<<<<<<< HEAD
-=======
 --- !u!1001 &608345621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20585,7 +20574,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7147dfd1cdff1f044bac4d8a244a3ad0, type: 3}
->>>>>>> parent of fa27eb9 (Merge branch 'house-')
 --- !u!1 &609720236
 GameObject:
   m_ObjectHideFlags: 0
@@ -32652,8 +32640,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 922660026}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
-<<<<<<< HEAD
-=======
 --- !u!1001 &923628630
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32711,7 +32697,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5d00d6747ecfe24da394fae8ca080d3, type: 3}
->>>>>>> parent of fa27eb9 (Merge branch 'house-')
 --- !u!1001 &925899052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33428,8 +33413,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 942534475}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
-<<<<<<< HEAD
-=======
 --- !u!1001 &945697581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33491,7 +33474,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7147dfd1cdff1f044bac4d8a244a3ad0, type: 3}
->>>>>>> parent of fa27eb9 (Merge branch 'house-')
 --- !u!1 &950794546
 GameObject:
   m_ObjectHideFlags: 0
@@ -34530,8 +34512,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70d8b77d498bbda438a0977ac5546d08, type: 3}
-<<<<<<< HEAD
-=======
 --- !u!1001 &987318443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34593,7 +34573,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7147dfd1cdff1f044bac4d8a244a3ad0, type: 3}
->>>>>>> parent of fa27eb9 (Merge branch 'house-')
 --- !u!1 &992538174
 GameObject:
   m_ObjectHideFlags: 0
@@ -35686,8 +35665,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b6893ade6fe1a9448a53bd400595713, type: 3}
-<<<<<<< HEAD
-=======
 --- !u!1001 &1034319968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35745,7 +35722,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 720907f9ba3b9f948910add14d652917, type: 3}
->>>>>>> parent of fa27eb9 (Merge branch 'house-')
 --- !u!1001 &1039560757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40766,8 +40742,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163536781}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
-<<<<<<< HEAD
-=======
 --- !u!1001 &1168108749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40825,7 +40799,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 720907f9ba3b9f948910add14d652917, type: 3}
->>>>>>> parent of fa27eb9 (Merge branch 'house-')
 --- !u!1 &1170423673
 GameObject:
   m_ObjectHideFlags: 0
@@ -44218,8 +44191,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50529d4b623a66d468d56c3fe0a41e4b, type: 3}
-<<<<<<< HEAD
-=======
 --- !u!1001 &1238607293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44277,7 +44248,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 720907f9ba3b9f948910add14d652917, type: 3}
->>>>>>> parent of fa27eb9 (Merge branch 'house-')
 --- !u!1001 &1246588171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44906,8 +44876,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35c67e3096fd7ad48a9a896986fdb300, type: 3}
-<<<<<<< HEAD
-=======
 --- !u!1001 &1275611929
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45042,7 +45010,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50cbe1f25c5c3ba4a98b0f858a4ae839, type: 3}
->>>>>>> parent of fa27eb9 (Merge branch 'house-')
 --- !u!1 &1283774931
 GameObject:
   m_ObjectHideFlags: 0
@@ -64518,8 +64485,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747715028}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
-<<<<<<< HEAD
-=======
 --- !u!1001 &1748853209
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64577,7 +64542,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6344c348ec3e08142b34e56ab39fc9b7, type: 3}
->>>>>>> parent of fa27eb9 (Merge branch 'house-')
 --- !u!1 &1752342251
 GameObject:
   m_ObjectHideFlags: 0
@@ -77657,8 +77621,6 @@ SceneRoots:
   - {fileID: 1983367661}
   - {fileID: 1542268267}
   - {fileID: 896795042}
-<<<<<<< HEAD
-=======
   - {fileID: 581963189}
   - {fileID: 496014412}
   - {fileID: 923628630}
@@ -77747,4 +77709,3 @@ SceneRoots:
   - {fileID: 2110490095}
   - {fileID: 1640503999}
   - {fileID: 1971058443}
->>>>>>> parent of fa27eb9 (Merge branch 'house-')
