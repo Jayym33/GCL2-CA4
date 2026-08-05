@@ -1,67 +1,74 @@
 using UnityEngine;
+using UnityEngine.AI; //Allow the enemy to use NavMesh for movement
 
 public class BasicEnemyController : MonoBehaviour
 {
-    public Transform player;        // Stores reference to the player object
-    public float speed = 2f;        // How fast the enemy moves
-    public float detectionRange = 5f; // How close the player must be before enemy starts chasing
-    public int health = 3;          // Enemy health 
+    public Transform player;           // Stores reference to the player's Transform (position, rotation)
+    public float speed = 3f;           // How fast the enemy moves toward the player
+    public float detectionRange = 10f; // How close the player must be to the enemy for the enemy to be triggered
+    public int health = 3;             // Enemy health
 
-    private Rigidbody2D rb;         // Reference to the Rigidbody2D component
+    private Rigidbody rb;              // Reference to the Rigidbody component (used for physics movement)
 
     void Start()
     {
-        // Get the Rigidbody2D component attached to this enemy
-        rb = GetComponent<Rigidbody2D>();
+        // Get the Rigidbody component attached to this enemy GameObject
+        rb = GetComponent<Rigidbody>();
 
-        // If player is not manually assigned in Inspector, find it automatically
+        // If the player was not manually assigned in the Inspector
         if (player == null)
         {
-            // Find the GameObject with tag "Player" and store its Transform
+            // Find the GameObject in the scene with the tag "Player"
+            // Then get its Transform component and store it
             player = GameObject.FindGameObjectWithTag("Player").transform;
         }
     }
 
     void Update()
     {
-        // Calculate the distance between the enemy and player
-        float distance = Vector2.Distance(transform.position, player.position);
+        // Calculate the distance between the enemy and player using 3D positions
+        float distance = Vector3.Distance(transform.position, player.position);
 
-        // If player is within detection range, the enemy will chase the player
+        // If the player is within the detection range, enemy will chase the player
         if (distance < detectionRange)
         {
-            ChasePlayer();
+            ChasePlayer(); // Call the chase function for the enemy
         }
         else
         {
-            // If the player is far and not in the dectection range, the enemy will go back to idle
-            Idle();
+            Idle(); // Otherwise, the player will stay idle
         }
     }
 
     void ChasePlayer()
     {
-        // For the enemy to figure out the direction that the player is at
-        Vector2 direction = (player.position - transform.position).normalized;
+        // For the enemy to know the direction the player is at
+        // (player position - enemy position = direction toward player)
+        Vector3 direction = (player.position - transform.position).normalized;
 
-        // normalized direction ensures consistent speed (not faster diagonally)
-        // Move the enemy towards the player in that direction and speed
-        rb.linearVelocity = direction * speed;
+        // Move enemy using Rigidbody velocity
+        // Only the movement X and Z is changed so the enemy moves on the ground and doesn't affect the up/down movement
+        // Y velocity is kept the same so gravity still works
+        rb.linearVelocity = new Vector3(direction.x * speed, rb.linearVelocity.y, direction.z * speed);
+
+        // Rotate the enemy to face the player so it looks at the player
+        transform.LookAt(player);
     }
 
     void Idle()
     {
-        // Stop all movement when idle
-        rb.linearVelocity = Vector2.zero;
+        // Stop horizontal movement (X and Z)
+        // Keep Y velocity so gravity is unaffected
+        rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
     }
 
-    // This function is called when the enemy takes damage
+    // Function that gets called when the enemy takes damage from the bullets
     public void TakeDamage(int damage)
     {
         // Reduce health by the damage amount
         health -= damage;
 
-        // Check if enemy health has reached 0 or below
+        // Check if health has dropped to 0 or below
         if (health <= 0)
         {
             Die(); // Call death function
@@ -70,7 +77,7 @@ public class BasicEnemyController : MonoBehaviour
 
     void Die()
     {
-        // Destroy the enemy GameObject when enemy dies (removes it from the scene)
+        // When enemy dies, destroy this enemy GameObject (removes it from the scene)
         Destroy(gameObject);
     }
 }
