@@ -185,11 +185,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 7
-  groundDrag: 0
-  playerheight: 0
+  groundDrag: 2
+  playerheight: 5
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   orientation: {fileID: 54735152111631386}
 --- !u!1 &5258870949057965183
 GameObject:
