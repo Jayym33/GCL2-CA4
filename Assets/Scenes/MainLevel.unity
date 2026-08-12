@@ -2657,9 +2657,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 36715414}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 749625eb9b1cc014e98e748963ca8d5d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7578ffe1dcffcab44be9691882343000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 50
 --- !u!1001 &36763691
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16000,11 +16001,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a5d00d6747ecfe24da394fae8ca080d3, type: 3}
   m_PrefabInstance: {fileID: 283846057}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &285690778 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5232293372941328169, guid: f5fb1c6737d425d4ab81c8e03e87703c, type: 3}
-  m_PrefabInstance: {fileID: 1110517505}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &286659286
 GameObject:
   m_ObjectHideFlags: 0
@@ -21206,10 +21202,10 @@ PrefabInstance:
       addedObject: {fileID: 386967824}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 515c44fbba7e8044f8a619ff047b2acb, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 386967828}
+      addedObject: {fileID: 386967827}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 515c44fbba7e8044f8a619ff047b2acb, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 386967831}
+      addedObject: {fileID: 386967830}
   m_SourcePrefab: {fileID: 100100000, guid: 515c44fbba7e8044f8a619ff047b2acb, type: 3}
 --- !u!1 &386967821 stripped
 GameObject:
@@ -21258,6 +21254,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1244077, y: 0.8472206, z: 0.10970505}
   m_Center: {x: -0.007856976, y: 0.2447832, z: 0.00562077}
+--- !u!114 &386967830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386967821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03545464656414e43bfe16e943275170, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equippedWeapon: {fileID: 131347287}
 --- !u!1 &389110617
 GameObject:
   m_ObjectHideFlags: 0
@@ -28811,9 +28820,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 495808485}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 749625eb9b1cc014e98e748963ca8d5d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7578ffe1dcffcab44be9691882343000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 50
 --- !u!1 &499292660
 GameObject:
   m_ObjectHideFlags: 0
@@ -51527,7 +51537,7 @@ Transform:
   m_Children:
   - {fileID: 145621422}
   - {fileID: 131347288}
-  m_Father: {fileID: 285690778}
+  m_Father: {fileID: 187953525}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &907888200
 PrefabInstance:
