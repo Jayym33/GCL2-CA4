@@ -2,38 +2,86 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    // Where the equipped weapon is held
+    // Where the weapons are held
     public Transform weaponHolder;
 
-    // Equipped weapon models
+    // Weapons
     public GameObject pistol;
     public GameObject bat;
 
-    // The weapon currently equipped
+    // Which weapons the player has picked up
+    private bool hasPistol = false;
+    private bool hasBat = false;
+
+    // Currently equipped weapon
     private GameObject currentWeapon;
 
     void Start()
     {
-        // Hide weapons when the game starts
+        // Hide both weapons at the start
         pistol.SetActive(false);
         bat.SetActive(false);
+    }
+
+    void Update()
+    {
+        // Press 1 to equip pistol
+        if (Input.GetKeyDown(KeyCode.Alpha1) && hasPistol)
+        {
+            EquipWeapon(pistol);
+        }
+
+        // Press 2 to equip bat
+        if (Input.GetKeyDown(KeyCode.Alpha2) && hasBat)
+        {
+            EquipWeapon(bat);
+        }
+
+        // Scroll the mouse wheel
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+        // Scroll UP = pistol
+        if (scroll > 0f && hasPistol)
+        {
+            EquipWeapon(pistol);
+        }
+
+        // Scroll DOWN = bat
+        if (scroll < 0f && hasBat)
+        {
+            EquipWeapon(bat);
+        }
     }
 
     // Equip a weapon
     public void EquipWeapon(GameObject weaponToEquip)
     {
-        // Hide the current weapon
+        // Hide current weapon
         if (currentWeapon != null)
         {
             currentWeapon.SetActive(false);
         }
 
-        // Show the new weapon
+        // Show new weapon
         weaponToEquip.SetActive(true);
 
-        // Remember the equipped weapon
+        // Remember current weapon
         currentWeapon = weaponToEquip;
+    }
 
-        Debug.Log("Weapon equipped!");
+    // Give player the pistol
+    public void PickUpPistol()
+    {
+        hasPistol = true;
+
+        Debug.Log("Picked up pistol!");
+    }
+
+    // Give player the bat
+    public void PickUpBat()
+    {
+        hasBat = true;
+
+        Debug.Log("Picked up bat!");
     }
 }

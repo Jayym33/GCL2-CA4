@@ -42,13 +42,22 @@ public class WeaponPickup : MonoBehaviour
         // Find the WeaponManager on the player
         WeaponManager weaponManager = FindFirstObjectByType<WeaponManager>();
 
-        // Equip the weapon
         if (weaponManager != null)
         {
-            weaponManager.EquipWeapon(equippedWeapon);
+            // Check which weapon was picked up
+            if (equippedWeapon == weaponManager.pistol)
+            {
+                // Add pistol to inventory
+                weaponManager.PickUpPistol();
+            }
+            else if (equippedWeapon == weaponManager.bat)
+            {
+                // Add bat to inventory
+                weaponManager.PickUpBat();
+            }
         }
 
-        // Remove the weapon from the floor
+        // Remove the weapon pickup from the floor
         gameObject.SetActive(false);
     }
 }
