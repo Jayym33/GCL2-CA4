@@ -74,6 +74,9 @@ public class WeaponManager : MonoBehaviour
     {
         hasPistol = true;
 
+        // Automatically equip pistol
+        EquipWeapon(pistol);
+
         Debug.Log("Picked up pistol!");
     }
 
@@ -81,6 +84,9 @@ public class WeaponManager : MonoBehaviour
     public void PickUpBat()
     {
         hasBat = true;
+
+        // Automatically equip bat
+        EquipWeapon(bat);
 
         Debug.Log("Picked up bat!");
     }
