@@ -11090,19 +11090,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 694467818}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 515c44fbba7e8044f8a619ff047b2acb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.987
+      value: -0.5999994
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 515c44fbba7e8044f8a619ff047b2acb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.17882723
+      value: -0.2800001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 515c44fbba7e8044f8a619ff047b2acb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.856
+      value: -0.52
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 515c44fbba7e8044f8a619ff047b2acb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11110,7 +11110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 515c44fbba7e8044f8a619ff047b2acb, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 515c44fbba7e8044f8a619ff047b2acb, type: 3}
       propertyPath: m_LocalRotation.y
@@ -18647,7 +18647,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 54735152111631386, guid: 19c0071b0d1e6834e8eec95c74748275, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 371389935}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19c0071b0d1e6834e8eec95c74748275, type: 3}
 --- !u!4 &694467817 stripped
@@ -31604,7 +31607,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1167446815
 Transform:
   m_ObjectHideFlags: 0
@@ -58744,6 +58747,5 @@ SceneRoots:
   - {fileID: 1167446815}
   - {fileID: 694467816}
   - {fileID: 37040612}
-  - {fileID: 371389933}
   - {fileID: 1572783919}
   - {fileID: 2092104882}
