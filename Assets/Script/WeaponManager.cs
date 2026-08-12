@@ -70,23 +70,7 @@ public class WeaponManager : MonoBehaviour
 
             usingGun = true;
 
-        // Remember current weapon
-        currentWeapon = weaponToEquip;
-    }
-
-    // Give player the pistol
-    public void PickUpPistol()
-    {
-        hasPistol = true;
-
-        Debug.Log("Picked up pistol!");
-    }
-
-    // Give player the bat
-    public void PickUpBat()
-    {
-        hasBat = true;
-
-        Debug.Log("Picked up bat!");
+            Debug.Log("Switched to Gun");
+        }
     }
 }
