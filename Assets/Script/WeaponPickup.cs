@@ -2,13 +2,10 @@ using UnityEngine;
 
 public class WeaponPickup : MonoBehaviour
 {
-    // The weapon that will be equipped
-    public GameObject weapon;
+    // The equipped version of this weapon
+    public GameObject equippedWeapon;
 
-    // Where the weapon will be held
-    public Transform weaponHolder;
-
-    // Check if the player is close enough
+    // Check if the player is nearby
     private bool playerNearby = false;
 
     void Update()
@@ -33,7 +30,7 @@ public class WeaponPickup : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        // Check if the player leaves
+        // Check if the player leaves the pickup area
         if (other.CompareTag("Player"))
         {
             playerNearby = false;
@@ -42,15 +39,16 @@ public class WeaponPickup : MonoBehaviour
 
     void PickUpWeapon()
     {
-        // Put the weapon inside the WeaponHolder
-        weapon.transform.SetParent(weaponHolder);
+        // Find the WeaponManager on the player
+        WeaponManager weaponManager = FindFirstObjectByType<WeaponManager>();
 
-        // Reset position
-        weapon.transform.localPosition = Vector3.zero;
+        // Equip the weapon
+        if (weaponManager != null)
+        {
+            weaponManager.EquipWeapon(equippedWeapon);
+        }
 
-        // Reset rotation
-        weapon.transform.localRotation = Quaternion.identity;
-
-        Debug.Log("Weapon picked up!");
+        // Remove the weapon from the floor
+        gameObject.SetActive(false);
     }
 }
