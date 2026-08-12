@@ -63,10 +63,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerMove()
     {
-        // calculate movement direction of the player
+        // Calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        rigidPlayer.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        // Move the player directly instead of using force
+        Vector3 newVelocity = moveDirection.normalized * moveSpeed;
+
+        // Keep the player's Y velocity
+        newVelocity.y = rigidPlayer.linearVelocity.y;
+
+        // Apply the movement
+        rigidPlayer.linearVelocity = newVelocity;
     }
 
     private void SpeedControl()
