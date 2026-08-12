@@ -89234,6 +89234,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3469787182068590514, guid: 19c0071b0d1e6834e8eec95c74748275, type: 3}
+      propertyPath: startingPoint
+      value: 
+      objectReference: {fileID: 551381114}
     - target: {fileID: 4767029649785736986, guid: 19c0071b0d1e6834e8eec95c74748275, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.4
@@ -89289,44 +89293,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2826431718623697865, guid: 19c0071b0d1e6834e8eec95c74748275, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1558349898}
-    - targetCorrespondingSourceObject: {fileID: 2826431718623697865, guid: 19c0071b0d1e6834e8eec95c74748275, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1558349899}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19c0071b0d1e6834e8eec95c74748275, type: 3}
---- !u!1 &1558349897 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2826431718623697865, guid: 19c0071b0d1e6834e8eec95c74748275, type: 3}
-  m_PrefabInstance: {fileID: 1558349896}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1558349898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1558349897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6c88cac7894bf445962673b49ef301d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1558349899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1558349897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2114278f3302a594985fa1ec87e98ca2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingPoint: {fileID: 551381114}
 --- !u!1 &1559161246
 GameObject:
   m_ObjectHideFlags: 0
