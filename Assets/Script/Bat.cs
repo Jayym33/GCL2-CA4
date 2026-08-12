@@ -82,7 +82,7 @@ public class Bat : MonoBehaviour
             float angle = Mathf.Lerp(swingAngle, 0f, progress);
 
             transform.localRotation =
-                startingRotation * Quaternion.Euler(0f, angle, 0f);
+                startingRotation * Quaternion.Euler(angle, 0f, 0f);
 
             yield return null;
         }
