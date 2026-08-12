@@ -42,17 +42,47 @@ public class BasicEnemyController : MonoBehaviour
 
     void ChasePlayer()
     {
-        // For the enemy to know the direction the player is at
-        // (player position - enemy position = direction toward player)
-        Vector3 direction = (player.position - transform.position).normalized;
+        // Calculate the direction from the enemy to the player
+        Vector3 direction = player.position - transform.position;
 
-        // Move enemy using Rigidbody velocity
-        // Only the movement X and Z is changed so the enemy moves on the ground and doesn't affect the up/down movement
-        // Y velocity is kept the same so gravity still works
-        rb.linearVelocity = new Vector3(direction.x * speed, rb.linearVelocity.y, direction.z * speed);
+        // Ignore the Y axis.
+        // This prevents the zombie from trying to look upward or downward.
+        direction.y = 0;
 
-        // Rotate the enemy to face the player so it looks at the player
-        transform.LookAt(player);
+        // Calculate the distance between the zombie and player
+        float distance = direction.magnitude;
+
+        // Only move if the player is far enough away
+        if (distance > 1.5f)
+        {
+            // Normalize the direction so the zombie moves at a consistent speed
+            direction.Normalize();
+
+            // Move toward the player
+            // X and Z control ground movement
+            // Y keeps the current gravity/falling velocity
+            rb.linearVelocity = new Vector3(
+                direction.x * speed,
+                rb.linearVelocity.y,
+                direction.z * speed
+            );
+
+            // Rotate the zombie to face the player
+            // Only do this while the zombie is actually chasing
+            if (direction != Vector3.zero)
+            {
+                transform.rotation = Quaternion.LookRotation(direction);
+            }
+        }
+        else
+        {
+            // Stop moving when the zombie gets close to the player
+            rb.linearVelocity = new Vector3(
+                0,
+                rb.linearVelocity.y,
+                0
+            );
+        }
     }
 
     void Idle()
