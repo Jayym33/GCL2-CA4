@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 463b82cb2b9a3af459dcc018e686c0d8
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 181470
+  packageName: Survivalist character
+  packageVersion: 1.2
+  assetPath: Assets/Survivalist/Prefab/PlayerArmature.prefab
+  uploadId: 762486

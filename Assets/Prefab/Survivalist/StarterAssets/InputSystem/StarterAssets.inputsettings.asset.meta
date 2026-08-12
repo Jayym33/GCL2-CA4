@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 260e3b44e175c824f81119a0e56f9d49
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 181470
+  packageName: Survivalist character
+  packageVersion: 1.2
+  assetPath: Assets/Survivalist/StarterAssets/InputSystem/StarterAssets.inputsettings.asset
+  uploadId: 762486

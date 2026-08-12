@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f447ce5f6a3df424481e8f7a6e5fe155
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 181470
+  packageName: Survivalist character
+  packageVersion: 1.2
+  assetPath: Assets/Survivalist/StarterAssets/Editor/PackageChecker/PackageImportList.txt
+  uploadId: 762486

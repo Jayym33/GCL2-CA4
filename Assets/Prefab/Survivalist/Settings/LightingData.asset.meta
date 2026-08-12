@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 429e5972642c7904cb458521e801d4e5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 112000000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 181470
+  packageName: Survivalist character
+  packageVersion: 1.2
+  assetPath: Assets/Survivalist/Settings/LightingData.asset
+  uploadId: 762486
