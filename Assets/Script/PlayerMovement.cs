@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
-
+    public float jumpForce = 15.0f;
     public float groundDrag;
 
     [Header("Ground Check")]
@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+     
         // ground check
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerheight * 0.5f + 0.2f, whatIsGround);
 
@@ -47,6 +48,12 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             rigidPlayer.linearDamping = 0;
+        }
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            rigidPlayer.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // Apply instant upward force
+            isGrounded = false; // Prevent mid-air jumps
         }
     }
 
@@ -78,6 +85,14 @@ public class PlayerMovement : MonoBehaviour
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rigidPlayer.linearVelocity = new Vector3(limitedVel.x, rigidPlayer.linearVelocity.y, limitedVel.z);
 
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
         }
     }
 }
