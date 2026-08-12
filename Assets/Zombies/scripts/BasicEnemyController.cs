@@ -3,72 +3,121 @@ using UnityEngine.AI; //Allow the enemy to use NavMesh for movement
 
 public class BasicEnemyController : MonoBehaviour
 {
-    public Transform player;           // Stores reference to the player's Transform (position, rotation)
-    public float speed = 3f;           // How fast the enemy moves toward the player
-    public float detectionRange = 10f; // How close the player must be to the enemy for the enemy to be triggered
-    public int health = 3;             // Enemy health
+    // The player's Transform
+    public Transform player;
 
-    private Rigidbody rb;              // Reference to the Rigidbody component (used for physics movement)
+    // How fast the zombie moves
+    public float speed = 2f;
+
+    // How far away the player can be before the zombie notices them
+    public float detectionRange = 10f;
+
+    // How close the zombie can get to the player
+    public float stoppingDistance = 2f;
+
+    // How much health the zombie has
+    public int health = 3;
+
+    // Reference to the zombie's Rigidbody
+    private Rigidbody rb;
+
+    // Reference to the zombie's Animator
+    private Animator animator;
+
 
     void Start()
     {
-        // Get the Rigidbody component attached to this enemy GameObject
+        // Find the Rigidbody attached to the zombie
         rb = GetComponent<Rigidbody>();
 
-        // If the player was not manually assigned in the Inspector
+        // Find the Animator attached to the zombie
+        animator = GetComponent<Animator>();
+
+        // Check if the Rigidbody exists
+        if (rb == null)
+        {
+            Debug.LogError("No Rigidbody found on the Zombie!");
+        }
+
+        // Check if the Animator exists
+        if (animator == null)
+        {
+            Debug.LogError("No Animator found on the Zombie!");
+        }
+
+        // Check if the Player has been assigned
         if (player == null)
         {
-            // Find the GameObject in the scene with the tag "Player"
-            // Then get its Transform component and store it
-            player = GameObject.FindGameObjectWithTag("Player").transform;
+            Debug.LogError("Player has NOT been assigned in the Inspector!");
         }
     }
+
 
     void Update()
     {
-        // Calculate the distance between the enemy and player using 3D positions
-        float distance = Vector3.Distance(transform.position, player.position);
-
-        // If the player is within the detection range, enemy will chase the player
-        if (distance < detectionRange)
+        // Stop the code if there is no player assigned
+        if (player == null)
         {
-            ChasePlayer(); // Call the chase function for the enemy
+            return;
+        }
+
+        // Calculate the distance between the zombie and player
+        float distance = Vector3.Distance(transform.position,player.position);
+
+        // Check if the player is within the detection range
+        if (distance <= detectionRange)
+        {
+            // Chase the player
+            ChasePlayer();
+
+            // Tell the Animator to play the Run animation
+            if (animator != null)
+            {
+                animator.SetBool("IsChasing", true);
+            }
         }
         else
         {
-            Idle(); // Otherwise, the player will stay idle
+            // Player is too far away, so stop moving
+            Idle();
+
+            // Tell the Animator to play the Idle animation
+            if (animator != null)
+            {
+                animator.SetBool("IsChasing", false);
+            }
         }
     }
 
+
     void ChasePlayer()
     {
-        // Calculate the direction from the enemy to the player
+        // Stop if the Rigidbody doesn't exist
+        if (rb == null)
+        {
+            return;
+        }
+
+        // Calculate the direction from the zombie to the player
         Vector3 direction = player.position - transform.position;
 
-        // Ignore the Y axis.
-        // This prevents the zombie from trying to look upward or downward.
+        // Ignore the Y axis so the zombie stays on the ground
         direction.y = 0;
 
-        // Calculate the distance between the zombie and player
+        // Calculate the distance to the player
         float distance = direction.magnitude;
 
-        // Only move if the player is far enough away
-        if (distance > 1.5f)
+        // Only move if the zombie is outside the stopping distance
+        if (distance > stoppingDistance)
         {
-            // Normalize the direction so the zombie moves at a consistent speed
+            // Make the direction have a length of 1
             direction.Normalize();
 
-            // Move toward the player
-            // X and Z control ground movement
-            // Y keeps the current gravity/falling velocity
-            rb.linearVelocity = new Vector3(
-                direction.x * speed,
-                rb.linearVelocity.y,
-                direction.z * speed
-            );
+            // Move the zombie toward the player
+            // Keep the Y velocity so gravity still works
+            rb.linearVelocity = new Vector3(direction.x * speed,rb.linearVelocity.y,direction.z * speed);
 
-            // Rotate the zombie to face the player
-            // Only do this while the zombie is actually chasing
+            // Turn the zombie toward the player
             if (direction != Vector3.zero)
             {
                 transform.rotation = Quaternion.LookRotation(direction);
@@ -76,38 +125,43 @@ public class BasicEnemyController : MonoBehaviour
         }
         else
         {
-            // Stop moving when the zombie gets close to the player
-            rb.linearVelocity = new Vector3(
-                0,
-                rb.linearVelocity.y,
-                0
-            );
+            // Stop horizontal movement when close to the player
+            // Keep Y velocity for gravity
+            rb.linearVelocity = new Vector3(0,rb.linearVelocity.y,0);
         }
     }
+
 
     void Idle()
     {
-        // Stop horizontal movement (X and Z)
-        // Keep Y velocity so gravity is unaffected
-        rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+        // Stop if the Rigidbody doesn't exist
+        if (rb == null)
+        {
+            return;
+        }
+
+        // Stop horizontal movement
+        // Keep Y velocity so gravity still works
+        rb.linearVelocity = new Vector3(0,rb.linearVelocity.y,0);
     }
 
-    // Function that gets called when the enemy takes damage from the bullets
+
     public void TakeDamage(int damage)
     {
-        // Reduce health by the damage amount
+        // Reduce the zombie's health
         health -= damage;
 
-        // Check if health has dropped to 0 or below
+        // Check if the zombie has no health left
         if (health <= 0)
         {
-            Die(); // Call death function
+            Die();
         }
     }
 
+
     void Die()
     {
-        // When enemy dies, destroy this enemy GameObject (removes it from the scene)
+        // Remove the zombie from the scene
         Destroy(gameObject);
     }
 }
