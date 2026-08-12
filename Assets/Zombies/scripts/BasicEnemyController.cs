@@ -7,16 +7,16 @@ public class BasicEnemyController : MonoBehaviour
     public Transform player;
 
     // How fast the zombie moves
-    public float speed = 2f;
+    public float speed = 2.5f;
 
     // How far away the zombie can detect the player
     public float detectionRange = 10f;
 
     // How close the zombie gets before stopping
-    public float stoppingDistance = 2f;
+    public float stoppingDistance = 1f;
 
     // How close the zombie needs to be to attack
-    public float attackRange = 2f;
+    public float attackRange = 1.5f;
 
     // How much damage each attack does
     public int attackDamage = 5;
@@ -25,7 +25,7 @@ public class BasicEnemyController : MonoBehaviour
     public float attackCooldown = 1.5f;
 
     // How much health the zombie has
-    public int health = 3;
+    public int health = 1;
 
     // Keeps track of when the zombie can attack again
     private float nextAttackTime = 0f;
@@ -74,63 +74,70 @@ public class BasicEnemyController : MonoBehaviour
 
     void Update()
     {
-        // Stop the code if there is no player
+        // Stop if there is no player assigned
         if (player == null)
         {
             return;
         }
 
-        // Turn off the attack animation after its duration
-        if (animator != null && Time.time >= attackAnimationEndTime)
-        {
-            animator.SetBool("IsAttacking", false);
-        }
-
         // Calculate the distance between the zombie and player
         float distance = Vector3.Distance(transform.position,player.position);
 
-        // Check if the player is within detection range
+        // Player is close enough to be detected
         if (distance <= detectionRange)
         {
-            // Check if the player is close enough to attack
+            // Player is close enough to attack
             if (distance <= attackRange)
             {
-                // Stop moving while attacking
+                // Stop the zombie
                 Idle();
 
-                // Tell the Animator to stop the Run animation
+                // Face the player
+                Vector3 direction = player.position - transform.position;
+                direction.y = 0;
+
+                if (direction != Vector3.zero)
+                {
+                    transform.rotation = Quaternion.LookRotation(direction);
+                }
+
+                // Stop the Run animation
                 if (animator != null)
                 {
                     animator.SetBool("IsChasing", false);
+
+                    // Start the Attack animation
                     animator.SetBool("IsAttacking", true);
                 }
 
-                // Deal damage to the player
+                // Deal damage
                 AttackPlayer();
             }
             else
             {
-                // Player is nearby but too far away to attack
-                // Chase the player
+                // Player is detected but too far away to attack
                 ChasePlayer();
 
-                // Play the Run animation
+                // Play Run animation
                 if (animator != null)
                 {
                     animator.SetBool("IsChasing", true);
+
+                    // Make sure Attack is turned off
+                    animator.SetBool("IsAttacking", false);
                 }
             }
         }
         else
         {
-            // Player is outside the detection range
-            // Stop the zombie
+            // Player is too far away
             Idle();
 
-            // Play the Idle animation
+            // Play Idle animation
             if (animator != null)
             {
                 animator.SetBool("IsChasing", false);
+                animator.SetBool("IsAttacking", false);
             }
         }
     }
@@ -161,8 +168,7 @@ public class BasicEnemyController : MonoBehaviour
 
             // Move the zombie toward the player
             // Keep the Y velocity so gravity still works
-            rb.linearVelocity = new Vector3(direction.x * speed,rb.linearVelocity.y,direction.z * speed
-            );
+            rb.linearVelocity = new Vector3(direction.x * speed,rb.linearVelocity.y,direction.z * speed);
 
             // Turn the zombie toward the player
             if (direction != Vector3.zero)
@@ -194,29 +200,26 @@ public class BasicEnemyController : MonoBehaviour
 
     void AttackPlayer()
     {
-        // Check if enough time has passed since the previous attack
+        // Check if the zombie can attack again
         if (Time.time >= nextAttackTime)
         {
-            // Tell the Animator to play the attack animation
-            if (animator != null)
-            {
-                animator.SetBool("IsAttacking", true);
-
-                // Set when the attack animation should finish
-                attackAnimationEndTime = Time.time + attackAnimationTime;
-            }
-
-            // Find the player's health component
+            // Find the PlayerHealth component
             PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
 
-            // Check if the player has PlayerHealth
+            // Check if PlayerHealth exists
             if (playerHealth != null)
             {
                 // Deal damage to the player
                 playerHealth.TakeDamage(attackDamage);
+
+                Debug.Log("Zombie attacked the player!");
+            }
+            else
+            {
+                Debug.LogWarning("PlayerHealth was not found on the Player!");
             }
 
-            // Set the next time the zombie can attack
+            // Set the next attack time
             nextAttackTime = Time.time + attackCooldown;
         }
     }
