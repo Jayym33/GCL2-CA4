@@ -15,7 +15,7 @@ public class PlayerCam : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //get the curser to be in the middle of the screen + invisible
+        // Lock the cursor to the middle of the screen
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -23,22 +23,39 @@ public class PlayerCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //getting the mouse input
+        // Get mouse movement
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensorX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensorY;
 
-        //setting the rotation
+        // Rotate camera horizontally
         yRotation += mouseX;
 
+        // Rotate camera vertically
         xRotation -= mouseY;
+
+        // Stop the camera from looking too far up or down
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        //rotate the camera + the orientation of it
-        //rotate x axis
+        // Rotate the camera
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
 
-        //rotate y axis
+        // Rotate the player's orientation
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+    }
 
+    // Reset the camera rotation when the player respawns
+    public void ResetCamera()
+    {
+        // Reset the camera's up/down rotation
+        xRotation = 0f;
+
+        // Get the player's current Y rotation
+        yRotation = transform.parent.eulerAngles.y;
+
+        // Reset camera rotation
+        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+
+        // Reset player orientation
+        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 }
