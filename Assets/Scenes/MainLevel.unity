@@ -21160,7 +21160,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 515c44fbba7e8044f8a619ff047b2acb, type: 3}
       propertyPath: m_LocalPosition.z
+<<<<<<< Updated upstream
+      value: -0.055999756
+=======
       value: -0.6559992
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 515c44fbba7e8044f8a619ff047b2acb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -21237,7 +21241,7 @@ MonoBehaviour:
   attackCooldown: 0.8
   swingAngle: 100
   swingDuration: 0.2
---- !u!114 &386967828
+114 &386967828
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88317,10 +88321,17 @@ PrefabInstance:
       addedObject: {fileID: 1557944563}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 61cde697b650c3048bc07a4a3d01c430, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1557944562}
+=======
+      addedObject: {fileID: 1557944562}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 61cde697b650c3048bc07a4a3d01c430, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1557944563}
 >>>>>>> Stashed changes
   m_SourcePrefab: {fileID: 100100000, guid: 61cde697b650c3048bc07a4a3d01c430, type: 3}
 --- !u!1 &1557944558 stripped
 GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 61cde697b650c3048bc07a4a3d01c430, type: 3}
   m_PrefabInstance: {fileID: 1557944557}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1557944560 stripped
