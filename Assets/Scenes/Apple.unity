@@ -30845,7 +30845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6679b52ed7d94745bf0335f13fc4708, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.04
+      value: 0.024
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e6679b52ed7d94745bf0335f13fc4708, type: 3}
       propertyPath: m_LocalPosition.z
@@ -30886,6 +30886,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e6679b52ed7d94745bf0335f13fc4708, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: e6679b52ed7d94745bf0335f13fc4708, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: e6679b52ed7d94745bf0335f13fc4708, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ced7d2b3d1433cd4b8af44cf20a22d06, type: 2}
+    - target: {fileID: 5866666021909216657, guid: e6679b52ed7d94745bf0335f13fc4708, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -43236,8 +43248,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 354968759}
-  speed: 3
+  speed: 2.5
   detectionRange: 10
+  stoppingDistance: 2
   health: 1
 --- !u!136 &1541725921
 CapsuleCollider:
@@ -43261,7 +43274,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &1541725922
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -43287,7 +43300,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &1550926533
 GameObject:
