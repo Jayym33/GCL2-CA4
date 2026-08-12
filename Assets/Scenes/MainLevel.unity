@@ -21246,6 +21246,7 @@ MonoBehaviour:
   swingAngle: 100
   swingDuration: 0.2
 <<<<<<< HEAD
+<<<<<<< HEAD
 114 &386967828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21260,6 +21261,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equippedWeapon: {fileID: 131347287}
 --- !u!65 &386967831
+=======
+--- !u!65 &386967827
+>>>>>>> parent of 145bc29 (fix pick up...)
 =======
 --- !u!65 &386967827
 >>>>>>> parent of 145bc29 (fix pick up...)
