@@ -11,10 +11,16 @@ public class RespawnManager : MonoBehaviour
     // Player's Rigidbody
     private Rigidbody rb;
 
+    // Player's camera script
+    private PlayerCam playerCam;
+
     void Start()
     {
         // Get the Rigidbody from the player
         rb = GetComponent<Rigidbody>();
+
+        // Get the PlayerCam script
+        playerCam = FindFirstObjectByType<PlayerCam>();
 
         // Set the starting point as the first checkpoint
         currentCheckpoint = startingPoint;
@@ -54,5 +60,12 @@ public class RespawnManager : MonoBehaviour
 
         // Rotate the player to match the checkpoint
         transform.rotation = currentCheckpoint.rotation;
+
+        // Reset the camera
+        if (playerCam != null)
+        {
+            playerCam.ResetCamera();
+        }
     }
 }
+
