@@ -64960,6 +64960,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1539287562285976413, guid: cb61bb65b131d094b837356072aab7b7, type: 3}
+      propertyPath: maxHealth
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 90254196138977525, guid: cb61bb65b131d094b837356072aab7b7, type: 3}
       propertyPath: startingPoint
       value: 
@@ -65026,6 +65030,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8823542679656067112, guid: cb61bb65b131d094b837356072aab7b7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1456899388}
+    - targetCorrespondingSourceObject: {fileID: 8823542679656067112, guid: cb61bb65b131d094b837356072aab7b7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1456899396}
   m_SourcePrefab: {fileID: 100100000, guid: cb61bb65b131d094b837356072aab7b7, type: 3}
 --- !u!4 &1390854032 stripped
 Transform:
@@ -68154,6 +68161,28 @@ MonoBehaviour:
   weaponHolder: {fileID: 405151460}
   bat: {fileID: 975686066}
   pistol: {fileID: 1150342009}
+--- !u!95 &1456899396
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456899387}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bc3dfc4ad5ddb7b49b07911b3bcb6881, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1458397268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -102657,5 +102686,9 @@ SceneRoots:
   - {fileID: 1475484016}
   - {fileID: 1091743944}
   - {fileID: 828279069}
+<<<<<<< Updated upstream
   - {fileID: 1250698014}
   - {fileID: 1165913036}
+=======
+  - {fileID: 1331360335}
+>>>>>>> Stashed changes
