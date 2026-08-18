@@ -38760,6 +38760,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 352844894286034688, guid: 4fe039f36962dd040aa2cb98bf2a68b3, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1390854032}
     - target: {fileID: 7382410499496873477, guid: 4fe039f36962dd040aa2cb98bf2a68b3, type: 3}
       propertyPath: m_Name
       value: ZombieEnemy

@@ -42,7 +42,8 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         Debug.Log("Player Died!");
-
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         SceneManager.LoadScene("DeathScreen");
     }
 }
