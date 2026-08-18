@@ -27,7 +27,10 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rigidPlayer = GetComponent<Rigidbody>();
-        rigidPlayer.freezeRotation = true;
+
+        rigidPlayer.constraints =
+            RigidbodyConstraints.FreezeRotationX |
+            RigidbodyConstraints.FreezeRotationZ;
     }
 
     // Update is called once per frame
@@ -70,10 +73,27 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerMove()
     {
-        // calculate movement direction of the player
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        // Calculate movement direction based on orientation
+        moveDirection = orientation.forward * verticalInput
+                      + orientation.right * horizontalInput;
 
-        rigidPlayer.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        // Prevent looking up/down from affecting movement
+        moveDirection.y = 0f;
+
+        // Move the player
+        rigidPlayer.AddForce(
+            moveDirection.normalized * moveSpeed * 10f,
+            ForceMode.Force
+        );
+
+        // Rotate the player's body to match the camera/orientation direction
+        Quaternion targetRotation = Quaternion.Euler(
+            0f,
+            orientation.eulerAngles.y,
+            0f
+        );
+
+        rigidPlayer.MoveRotation(targetRotation);
     }
 
     private void SpeedControl()

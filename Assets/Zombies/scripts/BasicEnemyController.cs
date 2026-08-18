@@ -25,7 +25,7 @@ public class BasicEnemyController : MonoBehaviour
     public float attackCooldown = 1.5f;
 
     // How much health the zombie has
-    public int health = 1;
+    public int health = 20;
 
     // Keeps track of when the zombie can attack again
     private float nextAttackTime = 0f;
