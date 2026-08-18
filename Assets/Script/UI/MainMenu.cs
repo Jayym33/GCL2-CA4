@@ -24,6 +24,12 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Credits");
     }
 
+    public void Instruction()
+    {
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        SceneManager.LoadScene("Instruction");
+    }
+
     public void Back()
     {
         SceneManager.LoadScene("MainMenu");
