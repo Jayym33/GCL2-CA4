@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GunPickup : MonoBehaviour
+public class PistolPickup : MonoBehaviour
 {
     private bool playerNearby = false;
     private WeaponManager weaponManager;
@@ -9,7 +9,7 @@ public class GunPickup : MonoBehaviour
     {
         if (playerNearby && Input.GetKeyDown(KeyCode.E))
         {
-            weaponManager.PickUpGun(gameObject);
+            PickUpPistol();
         }
     }
 
@@ -21,7 +21,7 @@ public class GunPickup : MonoBehaviour
 
             weaponManager = other.GetComponent<WeaponManager>();
 
-            Debug.Log("Press E to pick up gun");
+            Debug.Log("Press E to pick up pistol");
         }
     }
 
@@ -32,5 +32,19 @@ public class GunPickup : MonoBehaviour
             playerNearby = false;
             weaponManager = null;
         }
+    }
+
+    private void PickUpPistol()
+    {
+        if (weaponManager == null)
+        {
+            Debug.LogError("WeaponManager not found on Player!");
+            return;
+        }
+
+        weaponManager.PickUpPistol();
+
+        // Remove the pistol from the floor
+        gameObject.SetActive(false);
     }
 }

@@ -5,72 +5,88 @@ public class WeaponManager : MonoBehaviour
     [Header("Weapon Holder")]
     public Transform weaponHolder;
 
-    [Header("Weapons")]
+    [Header("Equipped Weapons")]
     public GameObject bat;
-    public GameObject gun;
+    public GameObject pistol;
 
-    private bool hasGun = false;
-    private bool usingGun = false;
+    // Tracks which weapons the player has picked up
+    private bool hasBat = false;
+    private bool hasPistol = false;
 
     void Start()
     {
-        // Player starts with the bat
-        bat.SetActive(true);
-
-        // Gun is hidden until picked up
-        if (gun != null)
-        {
-            gun.SetActive(false);
-        }
+        // Hide both weapons at the start
+        bat.SetActive(false);
+        pistol.SetActive(false);
     }
 
     void Update()
     {
-        // Right click switches weapons
-        if (hasGun && Input.GetMouseButtonDown(1))
+        // Press 1 = Pistol
+        if (hasPistol && Input.GetKeyDown(KeyCode.Alpha1))
         {
-            SwitchWeapon();
+            EquipPistol();
+        }
+
+        // Press 2 = Bat
+        if (hasBat && Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            EquipBat();
+        }
+
+        // Mouse scroll
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+        // Scroll up = Pistol
+        if (scroll > 0f && hasPistol)
+        {
+            EquipPistol();
+        }
+
+        // Scroll down = Bat
+        if (scroll < 0f && hasBat)
+        {
+            EquipBat();
         }
     }
 
-    public void PickUpGun(GameObject pickedUpGun)
+    // Called when player picks up the pistol
+    public void PickUpPistol()
     {
-        gun = pickedUpGun;
+        hasPistol = true;
 
-        // Put gun into player's weapon holder
-        gun.transform.SetParent(weaponHolder);
+        Debug.Log("Picked up pistol!");
 
-        hasGun = true;
+        // Equip pistol immediately
+        EquipPistol();
+    }
 
-        // Keep the bat equipped
-        gun.SetActive(false);
+    // Called when player picks up the bat
+    public void PickUpBat()
+    {
+        hasBat = true;
+
+        Debug.Log("Picked up bat!");
+
+        // Equip bat immediately
+        EquipBat();
+    }
+
+    // Equip pistol
+    private void EquipPistol()
+    {
+        bat.SetActive(false);
+        pistol.SetActive(true);
+
+        Debug.Log("Equipped Pistol");
+    }
+
+    // Equip bat
+    private void EquipBat()
+    {
+        pistol.SetActive(false);
         bat.SetActive(true);
-        usingGun = false;
 
-        Debug.Log("Picked up gun!");
-    }
-
-    void SwitchWeapon()
-    {
-        if (usingGun)
-        {
-            // Gun → Bat
-            gun.SetActive(false);
-            bat.SetActive(true);
-
-            usingGun = false;
-
-            Debug.Log("Switched to Bat");
-        }
-        else
-        {
-            // Bat → Gun
-            bat.SetActive(false);
-            gun.SetActive(true);
-
-            usingGun = true;
-
-            Debug.Log("Switched to Gun");
-        }
+        Debug.Log("Equipped Bat");
     }
 }
