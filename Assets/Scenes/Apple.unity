@@ -33089,7 +33089,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8702a028daa1ba42855092b117af7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  maxHealth: 30
+  currentHealth: 0
 --- !u!1 &1177324336
 GameObject:
   m_ObjectHideFlags: 0
@@ -58398,6 +58399,14 @@ PrefabInstance:
       propertyPath: cameraPos
       value: 
       objectReference: {fileID: 2059956280}
+    - target: {fileID: 6536513885815039972, guid: f5fb1c6737d425d4ab81c8e03e87703c, type: 3}
+      propertyPath: playerBody
+      value: 
+      objectReference: {fileID: 354968759}
+    - target: {fileID: 8049899170192491903, guid: f5fb1c6737d425d4ab81c8e03e87703c, type: 3}
+      propertyPath: playerBody
+      value: 
+      objectReference: {fileID: 354968759}
     - target: {fileID: 8049899170192491903, guid: f5fb1c6737d425d4ab81c8e03e87703c, type: 3}
       propertyPath: orientation
       value: 

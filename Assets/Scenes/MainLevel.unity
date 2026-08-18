@@ -39158,9 +39158,17 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 352844894286034688, guid: 4fe039f36962dd040aa2cb98bf2a68b3, type: 3}
+      propertyPath: health
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 352844894286034688, guid: 4fe039f36962dd040aa2cb98bf2a68b3, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1390854032}
+    - target: {fileID: 352844894286034688, guid: 4fe039f36962dd040aa2cb98bf2a68b3, type: 3}
+      propertyPath: attackDamage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 403735974028449549, guid: 4fe039f36962dd040aa2cb98bf2a68b3, type: 3}
       propertyPath: m_Layer
       value: 9
