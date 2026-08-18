@@ -1,9 +1,8 @@
 using UnityEngine;
-using UnityEngine.AI; //Allow the enemy to use NavMesh for movement
 
 public class BasicEnemyController : MonoBehaviour
 {
-    // The player's Transform
+    // The player's Transform (position, rotation,scale)
     public Transform player;
 
     // How fast the zombie moves
@@ -12,7 +11,7 @@ public class BasicEnemyController : MonoBehaviour
     // How far away the zombie can detect the player
     public float detectionRange = 10f;
 
-    // How close the zombie gets before stopping
+    // How close the zombie gets to before it stops running
     public float stoppingDistance = 1f;
 
     // How close the zombie needs to be to attack
@@ -48,6 +47,7 @@ public class BasicEnemyController : MonoBehaviour
 
     void Start()
     {
+        // Saves the zombies current position
         startingPosition = transform.position;
         startingRotation = transform.rotation;
 
@@ -88,19 +88,22 @@ public class BasicEnemyController : MonoBehaviour
         // Calculate the distance between the zombie and player
         float distance = Vector3.Distance(transform.position,player.position);
 
-        // Player is close enough to be detected
+        // Checks if player is close enough to be detected by the zombie
         if (distance <= detectionRange)
         {
-            // Player is close enough to attack
+            // Checks if player is close enough for the zombie to attack
             if (distance <= attackRange)
             {
-                // Stop the zombie
+                // Stop the zombie's movement  
                 Idle();
 
-                // Face the player
+                // Calculates the direction of the player from the zombie
                 Vector3 direction = player.position - transform.position;
+
+                // Ignores vertical movement so it doesn't fly
                 direction.y = 0;
 
+                // Rotates the zombie to face the player
                 if (direction != Vector3.zero)
                 {
                     transform.rotation = Quaternion.LookRotation(direction);
@@ -109,13 +112,14 @@ public class BasicEnemyController : MonoBehaviour
                 // Stop the Run animation
                 if (animator != null)
                 {
+                    // Stop chasing, stop the Run animation
                     animator.SetBool("IsChasing", false);
 
                     // Start the Attack animation
                     animator.SetBool("IsAttacking", true);
                 }
 
-                // Deal damage
+                // Deal damage to the player
                 AttackPlayer();
             }
             else
@@ -126,6 +130,7 @@ public class BasicEnemyController : MonoBehaviour
                 // Play Run animation
                 if (animator != null)
                 {
+                    // Zombie continues to chase and run after player
                     animator.SetBool("IsChasing", true);
 
                     // Make sure Attack is turned off
@@ -135,12 +140,13 @@ public class BasicEnemyController : MonoBehaviour
         }
         else
         {
-            // Player is too far away
+            // Player is too far away and cannot be detected by zombie, start Idleing
             Idle();
 
             // Play Idle animation
             if (animator != null)
             {
+                // Zombie does not chase or attack player as they are too far
                 animator.SetBool("IsChasing", false);
                 animator.SetBool("IsAttacking", false);
             }
@@ -171,7 +177,7 @@ public class BasicEnemyController : MonoBehaviour
             // Make the direction have a length of 1
             direction.Normalize();
 
-            // Move the zombie toward the player
+            // Move the zombie towards the player
             // Keep the Y velocity so gravity still works
             rb.linearVelocity = new Vector3(direction.x * speed,rb.linearVelocity.y,direction.z * speed);
 
@@ -208,7 +214,7 @@ public class BasicEnemyController : MonoBehaviour
         // Check if the zombie can attack again
         if (Time.time >= nextAttackTime)
         {
-            // Find the PlayerHealth component
+            // Find the PlayerHealth component attached to the player
             PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
 
             // Check if PlayerHealth exists
