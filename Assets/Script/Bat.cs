@@ -23,6 +23,10 @@ public class Bat : MonoBehaviour
 
     void Update()
     {
+        // Do nothing if this bat is not currently active
+        if (!gameObject.activeInHierarchy)
+            return;
+
         // Left click to swing
         if (Input.GetMouseButtonDown(0) &&
             Time.time >= nextAttackTime &&
@@ -36,7 +40,6 @@ public class Bat : MonoBehaviour
     {
         nextAttackTime = Time.time + attackCooldown;
 
-        // Start the swing
         StartCoroutine(Swing());
     }
 
@@ -44,7 +47,7 @@ public class Bat : MonoBehaviour
     {
         isSwinging = true;
 
-        // Activate the hitbox
+        // Activate hitbox
         BatHitbox hitbox = GetComponentInChildren<BatHitbox>();
 
         if (hitbox != null)
@@ -52,16 +55,15 @@ public class Bat : MonoBehaviour
             hitbox.ActivateHitbox();
         }
 
+        // Swing forward
         float timer = 0f;
 
-        // Swing from starting rotation to the side
         while (timer < swingDuration)
         {
             timer += Time.deltaTime;
 
             float progress = timer / swingDuration;
 
-            // Smooth the movement
             float angle = Mathf.Lerp(0f, swingAngle, progress);
 
             transform.localRotation =
@@ -70,7 +72,7 @@ public class Bat : MonoBehaviour
             yield return null;
         }
 
-        // Return the bat to its starting position
+        // Return to starting rotation
         timer = 0f;
 
         while (timer < swingDuration)
@@ -82,12 +84,12 @@ public class Bat : MonoBehaviour
             float angle = Mathf.Lerp(swingAngle, 0f, progress);
 
             transform.localRotation =
-                startingRotation * Quaternion.Euler(angle, 0f, 0f);
+                startingRotation * Quaternion.Euler(0f, angle, 0f);
 
             yield return null;
         }
 
-        // Make absolutely sure we return to the original rotation
+        // Make sure the bat returns exactly to its original rotation
         transform.localRotation = startingRotation;
 
         isSwinging = false;
