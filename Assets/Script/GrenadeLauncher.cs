@@ -5,6 +5,9 @@ public class GrenadeLauncher : MonoBehaviour
     [Header("Grenade Settings")]
     public GameObject grenadePrefab;
 
+    [Header("Muzzle")]
+    public Transform muzzle;
+
     [Header("Weapon Stats")]
     public float grenadeSpeed = 20f;
     public float fireRate = 1f;
@@ -27,12 +30,12 @@ public class GrenadeLauncher : MonoBehaviour
 
     void Update()
     {
-        // Only fire when the grenade launcher is currently active
+        // Only fire when grenade launcher is equipped
         if (!gameObject.activeInHierarchy)
             return;
 
-        // Hold left mouse button to fire
-        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
+        // Left click to fire
+        if (Input.GetMouseButtonDown(0) && Time.time >= nextFireTime)
         {
             Fire();
 
@@ -42,60 +45,67 @@ public class GrenadeLauncher : MonoBehaviour
 
     void Fire()
     {
-        // No ammo
         if (currentAmmo <= 0)
         {
             Debug.Log("Out of Grenades!");
             return;
         }
 
-        // Use one grenade
+        if (muzzle == null)
+        {
+            Debug.LogWarning("Muzzle is not assigned!");
+            return;
+        }
+
+        if (grenadePrefab == null)
+        {
+            Debug.LogWarning("Grenade Prefab is not assigned!");
+            return;
+        }
+
         currentAmmo--;
 
-        // Spawn grenade
-        if (grenadePrefab != null)
+        GameObject grenade = Instantiate(
+            grenadePrefab,
+            muzzle.position,
+            muzzle.rotation
+        );
+
+        Rigidbody rb = grenade.GetComponent<Rigidbody>();
+
+        if (rb != null)
         {
-            GameObject grenade = Instantiate(
-                grenadePrefab,
-                transform.position,
-                transform.rotation
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+
+            rb.AddForce(
+                muzzle.forward * grenadeSpeed,
+                ForceMode.Impulse
             );
 
-            Rigidbody rb = grenade.GetComponent<Rigidbody>();
-
-            if (rb != null)
-            {
-                // Launch grenade forward
-                rb.linearVelocity = transform.forward * grenadeSpeed;
-            }
-            else
-            {
-                Debug.LogWarning(
-                    "Grenade prefab does not have a Rigidbody!"
-                );
-            }
-
-            // Give grenade its explosion settings
-            GrenadeProjectile projectile =
-                grenade.GetComponent<GrenadeProjectile>();
-
-            if (projectile != null)
-            {
-                projectile.explosionRadius = explosionRadius;
-                projectile.explosionDamage = explosionDamage;
-            }
-
-            // Make crosshair expand when shooting
-            if (crosshair != null)
-            {
-                crosshair.OnShoot();
-            }
+            Debug.Log(
+                "Grenade launched! Direction: " + muzzle.forward
+            );
         }
         else
         {
-            Debug.LogWarning(
-                "Grenade Prefab is not assigned!"
+            Debug.LogError(
+                "GRENADE HAS NO RIGIDBODY!"
             );
+        }
+
+        GrenadeProjectile projectile =
+            grenade.GetComponent<GrenadeProjectile>();
+
+        if (projectile != null)
+        {
+            projectile.explosionRadius = explosionRadius;
+            projectile.explosionDamage = explosionDamage;
+        }
+
+        if (crosshair != null)
+        {
+            crosshair.OnShoot();
         }
 
         Debug.Log(
@@ -107,7 +117,6 @@ public class GrenadeLauncher : MonoBehaviour
     {
         currentAmmo += amount;
 
-        // Don't go above magazine size
         if (currentAmmo > magazineSize)
         {
             currentAmmo = magazineSize;
