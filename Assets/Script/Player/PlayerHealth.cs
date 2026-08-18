@@ -1,36 +1,48 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int health = 50;
+    public int maxHealth = 30;
+    public int currentHealth;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    
+        currentHealth = maxHealth;
     }
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        currentHealth -= damage;
 
-        if (health <= 0)
+        Debug.Log("Player Health: " + currentHealth);
+
+        if (currentHealth <= 0)
         {
-            health = 0;
             Die();
         }
     }
 
+    public void Heal(int amount)
+    {
+        currentHealth += amount;
+
+        // Prevent health from going above max health
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        Debug.Log("Player Health: " + currentHealth);
+    }
+
+
     void Die()
     {
-        Debug.Log("Player died!");
-     
+        Debug.Log("Player Died!");
+
+        SceneManager.LoadScene("DeathScreen");
     }
 }

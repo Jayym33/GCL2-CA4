@@ -14,6 +14,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 6ed0443f68eb63748bb341b665dbd200
+  - enabled: 0
+    path: Assets/Scenes/Apple.unity
+    guid: 2488b54888b8f67459c054a8d529bb25
+  - enabled: 1
+    path: Assets/Scenes/DeathScreen.unity
+    guid: 2bc1b365d17406e49beba7081060074f
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: 87129d48a30f70f4d8f2bb7168db2b12
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
