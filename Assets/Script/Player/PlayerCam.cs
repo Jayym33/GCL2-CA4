@@ -44,6 +44,8 @@ public class PlayerCam : MonoBehaviour
 
         // Camera looks up/down
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
+
     }
 
     public void ResetCamera()
