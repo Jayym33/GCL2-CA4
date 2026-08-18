@@ -19,7 +19,7 @@ public class Gun : MonoBehaviour
     public Crosshair crosshair;
 
     private float nextFireTime;
-    private int currentAmmo;
+    public int currentAmmo;
 
     void Start()
     {
