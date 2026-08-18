@@ -10,6 +10,9 @@ public class Gun : MonoBehaviour
     public float fireRate = 3f;
     public int magazineSize = 15;
 
+    [Header("Crosshair")]
+    public Crosshair crosshair;
+
     private float nextFireTime;
     private int currentAmmo;
 
@@ -63,6 +66,12 @@ public class Gun : MonoBehaviour
             else
             {
                 Debug.LogWarning("Bullet prefab does not have a Rigidbody!");
+            }
+
+            // Make crosshair expand when shooting
+            if (crosshair != null)
+            {
+                crosshair.OnShoot();
             }
         }
         else
