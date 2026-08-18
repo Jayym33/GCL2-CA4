@@ -172,6 +172,7 @@ public class PlayerHealth : MonoBehaviour
             deathScreen.SetActive(true);
         }
 
+
         // Stop player movement
         if (playerMovement != null)
         {

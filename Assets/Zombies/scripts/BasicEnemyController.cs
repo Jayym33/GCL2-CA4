@@ -45,6 +45,7 @@ public class BasicEnemyController : MonoBehaviour
     private Vector3 startingPosition;
     private Quaternion startingRotation;
 
+
     void Start()
     {
         // Saves the zombies current position
