@@ -1,61 +1,58 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCam : MonoBehaviour
 {
-    public float sensorX;
-    public float sensorY;
+    [Header("Mouse Sensitivity")]
+    public float sensorX = 200f;
+    public float sensorY = 200f;
 
+    [Header("Player")]
     public Transform orientation;
+    public Transform playerBody;
 
-    float xRotation;
-    float yRotation;
+    private float xRotation;
+    private float yRotation;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // Lock the cursor to the middle of the screen
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        yRotation = playerBody.eulerAngles.y;
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Get mouse movement
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensorX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensorY;
 
-        // Rotate camera horizontally
+        // Horizontal rotation
         yRotation += mouseX;
 
-        // Rotate camera vertically
+        // Vertical rotation
         xRotation -= mouseY;
 
-        // Stop the camera from looking too far up or down
+        // Limit vertical camera movement
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        // Rotate the camera
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        // Rotate player left/right
+        playerBody.rotation = Quaternion.Euler(0f, yRotation, 0f);
 
-        // Rotate the player's orientation
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        // Rotate movement orientation
+        orientation.rotation = Quaternion.Euler(0f, yRotation, 0f);
+
+        // Camera looks up/down
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
     }
 
-    // Reset the camera rotation when the player respawns
     public void ResetCamera()
     {
-        // Reset the camera's up/down rotation
         xRotation = 0f;
+        yRotation = playerBody.eulerAngles.y;
 
-        // Get the player's current Y rotation
-        yRotation = transform.parent.eulerAngles.y;
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        // Reset camera rotation
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-
-        // Reset player orientation
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        orientation.rotation = Quaternion.Euler(0f, yRotation, 0f);
     }
 }

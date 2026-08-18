@@ -1,21 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-
+    [Header("Camera Position")]
     public Transform cameraPos;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [Header("Player")]
+    public Transform playerBody;
 
-    // Update is called once per frame
     void Update()
     {
+        // Follow the camera position
         transform.position = cameraPos.position;
+
+        // Follow the player's horizontal rotation
+        transform.rotation = Quaternion.Euler(
+            0f,
+            playerBody.eulerAngles.y,
+            0f
+        );
     }
 }

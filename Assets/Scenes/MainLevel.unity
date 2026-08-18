@@ -51822,6 +51822,14 @@ PrefabInstance:
       propertyPath: cameraPos
       value: 
       objectReference: {fileID: 1943711932}
+    - target: {fileID: 6536513885815039972, guid: f5fb1c6737d425d4ab81c8e03e87703c, type: 3}
+      propertyPath: playerBody
+      value: 
+      objectReference: {fileID: 1390854032}
+    - target: {fileID: 8049899170192491903, guid: f5fb1c6737d425d4ab81c8e03e87703c, type: 3}
+      propertyPath: playerBody
+      value: 
+      objectReference: {fileID: 1390854032}
     - target: {fileID: 8049899170192491903, guid: f5fb1c6737d425d4ab81c8e03e87703c, type: 3}
       propertyPath: orientation
       value: 
@@ -63618,6 +63626,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1456899388}
   m_SourcePrefab: {fileID: 100100000, guid: cb61bb65b131d094b837356072aab7b7, type: 3}
+--- !u!4 &1390854032 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5967435119256580697, guid: cb61bb65b131d094b837356072aab7b7, type: 3}
+  m_PrefabInstance: {fileID: 1390854031}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1393845699
 GameObject:
   m_ObjectHideFlags: 0
