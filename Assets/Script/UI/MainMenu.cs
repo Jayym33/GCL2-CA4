@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-   public void PlayGame()
+    private RespawnManager respawnManager;
+
+    public void PlayGame()
     {
         SceneManager.LoadScene("MainLevel");
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
@@ -25,5 +27,10 @@ public class MainMenu : MonoBehaviour
     public void Back()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Respawn()
+    {
+        respawnManager.Respawn();
     }
 }

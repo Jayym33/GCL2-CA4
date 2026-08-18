@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e6679b52ed7d94745bf0335f13fc4708, type: 3}
       propertyPath: m_Name
-      value: SF_Zombie_08_LODs
+      value: ZombieEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e6679b52ed7d94745bf0335f13fc4708, type: 3}
       propertyPath: m_TagString
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8757fd8e72ee1547b1787e50419a03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 5967435119256580697, guid: cb61bb65b131d094b837356072aab7b7, type: 3}
   speed: 2.5
   detectionRange: 10
   stoppingDistance: 1
