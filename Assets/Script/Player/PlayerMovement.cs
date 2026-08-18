@@ -25,37 +25,32 @@ public class PlayerMovement : MonoBehaviour
     {
         rigidPlayer = GetComponent<Rigidbody>();
 
-        rigidPlayer.constraints =
-            RigidbodyConstraints.FreezeRotationX |
-            RigidbodyConstraints.FreezeRotationZ;
+        rigidPlayer.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
     void Update()
     {
         // Ground check
-        isGrounded = Physics.Raycast(
-            transform.position,
-            Vector3.down,
-            playerheight * 0.5f + 0.2f,
-            whatIsGround
-        );
+        isGrounded = Physics.Raycast(transform.position,Vector3.down,playerheight * 0.5f + 0.2f,whatIsGround);
 
         PlayerInput();
         SpeedControl();
 
         // Apply drag
         if (isGrounded)
+        {
             rigidPlayer.linearDamping = groundDrag;
+        }
         else
+        {
             rigidPlayer.linearDamping = 0;
+        }
+            
 
         // Jump ONLY with Space
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rigidPlayer.AddForce(
-                Vector3.up * jumpForce,
-                ForceMode.Impulse
-            );
+            rigidPlayer.AddForce(Vector3.up * jumpForce,ForceMode.Impulse);
 
             isGrounded = false;
         }
@@ -74,44 +69,26 @@ public class PlayerMovement : MonoBehaviour
 
     void PlayerMove()
     {
-        moveDirection =
-            orientation.forward * verticalInput +
-            orientation.right * horizontalInput;
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         moveDirection.y = 0f;
 
-        rigidPlayer.AddForce(
-            moveDirection.normalized * moveSpeed * 10f,
-            ForceMode.Force
-        );
+        rigidPlayer.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
-        Quaternion targetRotation = Quaternion.Euler(
-            0f,
-            orientation.eulerAngles.y,
-            0f
-        );
+        Quaternion targetRotation = Quaternion.Euler(0f,orientation.eulerAngles.y,0f);
 
         rigidPlayer.MoveRotation(targetRotation);
     }
 
     void SpeedControl()
     {
-        Vector3 flatVel = new Vector3(
-            rigidPlayer.linearVelocity.x,
-            0f,
-            rigidPlayer.linearVelocity.z
-        );
+        Vector3 flatVel = new Vector3(rigidPlayer.linearVelocity.x,0f,rigidPlayer.linearVelocity.z);
 
         if (flatVel.magnitude > moveSpeed)
         {
-            Vector3 limitedVel =
-                flatVel.normalized * moveSpeed;
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
 
-            rigidPlayer.linearVelocity = new Vector3(
-                limitedVel.x,
-                rigidPlayer.linearVelocity.y,
-                limitedVel.z
-            );
+            rigidPlayer.linearVelocity = new Vector3(limitedVel.x,rigidPlayer.linearVelocity.y,limitedVel.z);
         }
     }
 

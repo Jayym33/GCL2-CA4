@@ -40,9 +40,14 @@ public class PlayerCrouch : MonoBehaviour
             crouching = !crouching;
 
             if (crouching)
+            {
                 Crouch();
+            }
             else
+            {
                 Stand();
+            }
+                
         }
 
         // Move camera smoothly
@@ -53,22 +58,14 @@ public class PlayerCrouch : MonoBehaviour
             targetCameraPosition.y -= crouchCameraOffset;
         }
 
-        playerCamera.localPosition = Vector3.Lerp(
-            playerCamera.localPosition,
-            targetCameraPosition,
-            cameraMoveSpeed * Time.deltaTime
-        );
+        playerCamera.localPosition = Vector3.Lerp(playerCamera.localPosition,targetCameraPosition,cameraMoveSpeed * Time.deltaTime);
     }
 
     void Crouch()
     {
         capsuleCollider.height = crouchHeight;
 
-        capsuleCollider.center = new Vector3(
-            0f,
-            -(normalHeight - crouchHeight) / 2f,
-            0f
-        );
+        capsuleCollider.center = new Vector3(0f,-(normalHeight - crouchHeight) / 2f,0f);
 
         playerController.moveSpeed = crouchSpeed;
 
