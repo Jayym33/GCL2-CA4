@@ -66,6 +66,18 @@ public class RespawnManager : MonoBehaviour
         {
             playerCam.ResetCamera();
         }
+
+        // Find all living zombies in the scene
+        BasicEnemyController[] zombies =
+            FindObjectsByType<BasicEnemyController>(
+                FindObjectsSortMode.None
+            );
+
+        // Reset each zombie
+        foreach (BasicEnemyController zombie in zombies)
+        {
+            zombie.ResetZombie();
+        }
     }
 }
 
