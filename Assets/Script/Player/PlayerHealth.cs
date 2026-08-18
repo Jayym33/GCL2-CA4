@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 30;
     public int currentHealth;
+    public GameObject deathScreen;
 
     void Start()
     {
@@ -42,8 +43,11 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         Debug.Log("Player Died!");
+
+        deathScreen.SetActive(true);
+        crosshair.SetActive(false);
+
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
-        SceneManager.LoadScene("DeathScreen");
     }
 }
