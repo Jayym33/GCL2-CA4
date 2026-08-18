@@ -4,6 +4,7 @@ public class Gun : MonoBehaviour
 {
     [Header("Bullet Settings")]
     public GameObject bulletPrefab;
+    public Transform firePoint;
 
     [Header("Weapon Stats")]
     public float bulletSpeed = 40f;
@@ -23,11 +24,9 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        // Only fire when the pistol is currently active
         if (!gameObject.activeInHierarchy)
             return;
 
-        // Hold left mouse button to fire
         if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
         {
             Fire();
@@ -38,45 +37,46 @@ public class Gun : MonoBehaviour
 
     void Fire()
     {
-        // No ammo
         if (currentAmmo <= 0)
         {
             Debug.Log("Out of Ammo!");
             return;
         }
 
-        // Use one bullet
         currentAmmo--;
 
-        // Spawn bullet
-        if (bulletPrefab != null)
+        if (bulletPrefab == null)
         {
-            GameObject bullet = Instantiate(
-                bulletPrefab,
-                transform.position,
-                transform.rotation
-            );
+            Debug.LogWarning("Bullet Prefab is not assigned!");
+            return;
+        }
 
-            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        if (firePoint == null)
+        {
+            Debug.LogWarning("Fire Point is not assigned!");
+            return;
+        }
 
-            if (rb != null)
-            {
-                rb.linearVelocity = transform.forward * bulletSpeed;
-            }
-            else
-            {
-                Debug.LogWarning("Bullet prefab does not have a Rigidbody!");
-            }
+        GameObject bullet = Instantiate(
+            bulletPrefab,
+            firePoint.position,
+            firePoint.rotation
+        );
 
-            // Make crosshair expand when shooting
-            if (crosshair != null)
-            {
-                crosshair.OnShoot();
-            }
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+
+        if (rb != null)
+        {
+            rb.linearVelocity = firePoint.forward * bulletSpeed;
         }
         else
         {
-            Debug.LogWarning("Bullet Prefab is not assigned!");
+            Debug.LogWarning("Bullet prefab does not have a Rigidbody!");
+        }
+
+        if (crosshair != null)
+        {
+            crosshair.OnShoot();
         }
 
         Debug.Log("Bang! Ammo Left: " + currentAmmo);
@@ -86,7 +86,6 @@ public class Gun : MonoBehaviour
     {
         currentAmmo += amount;
 
-        // Don't go above magazine size
         if (currentAmmo > magazineSize)
         {
             currentAmmo = magazineSize;
