@@ -34757,6 +34757,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729487573}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!20 &730070913 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3616778079351829972, guid: f5fb1c6737d425d4ab81c8e03e87703c, type: 3}
+  m_PrefabInstance: {fileID: 1110517505}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &732151738
 GameObject:
   m_ObjectHideFlags: 0
@@ -54921,7 +54926,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 92439569168250253, guid: 259bb04c6d29ef74d9b194e9bce30eff, type: 3}
   firePoint: {fileID: 565475341}
-  bulletSpeed: 15
+  playerCamera: {fileID: 730070913}
+  aimDistance: 100
+  bulletSpeed: 25
   fireRate: 3
   magazineSize: 15
   crosshair: {fileID: 780698791}
@@ -69956,6 +69963,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 0}
   firePoint: {fileID: 0}
+  playerCamera: {fileID: 0}
+  aimDistance: 100
   bulletSpeed: 40
   fireRate: 3
   magazineSize: 15
