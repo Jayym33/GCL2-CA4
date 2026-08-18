@@ -42,10 +42,15 @@ public class BasicEnemyController : MonoBehaviour
     // Reference to the zombie's Animator
     private Animator animator;
 
-
+    // Save the zombie's original position and rotation
+    private Vector3 startingPosition;
+    private Quaternion startingRotation;
 
     void Start()
     {
+        startingPosition = transform.position;
+        startingRotation = transform.rotation;
+
         // Find the Rigidbody attached to the zombie
         rb = GetComponent<Rigidbody>();
 
@@ -237,6 +242,32 @@ public class BasicEnemyController : MonoBehaviour
         }
     }
 
+    public void ResetZombie()
+    {
+        // Reset position and rotation
+        transform.position = startingPosition;
+        transform.rotation = startingRotation;
+
+        // Stop the zombie's movement
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+
+        // Reset attack timer
+        nextAttackTime = 0f;
+        attackAnimationEndTime = 0f;
+
+        // Reset animations
+        if (animator != null)
+        {
+            animator.SetBool("IsChasing", false);
+            animator.SetBool("IsAttacking", false);
+        }
+
+        Debug.Log(gameObject.name + " reset to starting position.");
+    }
 
     void Die()
     {

@@ -1,17 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [Header("Health")]
     public int maxHealth = 30;
     public int currentHealth;
+
+    [Header("UI")]
     public GameObject deathScreen;
+
+    private RespawnManager respawnManager;
+    private PlayerMovement playerMovement;
 
     void Start()
     {
         currentHealth = maxHealth;
+
+        respawnManager = GetComponent<RespawnManager>();
+        playerMovement = GetComponent<PlayerMovement>();
+
+        // Hide death screen when the game starts
+        if (deathScreen != null)
+        {
+            deathScreen.SetActive(false);
+        }
+
+        // Lock cursor during gameplay
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void TakeDamage(int damage)
@@ -22,6 +38,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            currentHealth = 0;
             Die();
         }
     }
@@ -39,15 +56,61 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player Health: " + currentHealth);
     }
 
-
-    void Die()
+    private void Die()
     {
         Debug.Log("Player Died!");
 
-        deathScreen.SetActive(true);
-        crosshair.SetActive(false);
+        // Show death screen
+        if (deathScreen != null)
+        {
+            deathScreen.SetActive(true);
+        }
 
+        // Stop player movement
+        if (playerMovement != null)
+        {
+            playerMovement.enabled = false;
+        }
+
+        // Show cursor
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
+    }
+
+    public void RespawnPlayer()
+    {
+        Debug.Log("RESPAWN BUTTON PRESSED");
+
+        // Respawn at latest checkpoint
+        if (respawnManager != null)
+        {
+            respawnManager.Respawn();
+        }
+        else
+        {
+            Debug.LogError("RespawnManager is missing from the Player!");
+            return;
+        }
+
+        // Restore health
+        currentHealth = maxHealth;
+
+        // Hide death screen
+        if (deathScreen != null)
+        {
+            deathScreen.SetActive(false);
+        }
+
+        // Enable player movement
+        if (playerMovement != null)
+        {
+            playerMovement.enabled = true;
+        }
+
+        // Lock cursor again
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        Debug.Log("Player respawned!");
     }
 }

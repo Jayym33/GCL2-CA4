@@ -29,8 +29,4 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void Respawn()
-    {
-        respawnManager.Respawn();
-    }
 }
