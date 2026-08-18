@@ -2,11 +2,9 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [Header("Health")]
-    public int maxHealth = 30;
+    public int maxHealth = 10;
     public int currentHealth;
 
-    [Header("UI")]
     public GameObject deathScreen;
 
     private RespawnManager respawnManager;
