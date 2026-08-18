@@ -8,85 +8,143 @@ public class WeaponManager : MonoBehaviour
     [Header("Equipped Weapons")]
     public GameObject bat;
     public GameObject pistol;
+    public GameObject grenadeLauncher;
 
     // Tracks which weapons the player has picked up
     private bool hasBat = false;
     private bool hasPistol = false;
+    private bool hasGrenadeLauncher = false;
 
     void Start()
     {
-        // Hide both weapons at the start
-        bat.SetActive(false);
-        pistol.SetActive(false);
+        // Make sure ALL weapons are hidden when the game starts
+        if (bat != null)
+            bat.SetActive(false);
+
+        if (pistol != null)
+            pistol.SetActive(false);
+
+        if (grenadeLauncher != null)
+            grenadeLauncher.SetActive(false);
+
+        Debug.Log("All weapons hidden at start.");
     }
 
     void Update()
     {
-        // Press 1 = Pistol
+        // =========================
+        // NUMBER KEYS
+        // =========================
+
+        // 1 = Pistol
         if (hasPistol && Input.GetKeyDown(KeyCode.Alpha1))
         {
             EquipPistol();
         }
 
-        // Press 2 = Bat
+        // 2 = Bat
         if (hasBat && Input.GetKeyDown(KeyCode.Alpha2))
         {
             EquipBat();
         }
 
-        // Mouse scroll
+        // 3 = Grenade Launcher
+        if (hasGrenadeLauncher && Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            EquipGrenadeLauncher();
+        }
+
+        // =========================
+        // MOUSE SCROLL
+        // =========================
+
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
-        // Scroll up = Pistol
         if (scroll > 0f && hasPistol)
         {
             EquipPistol();
         }
 
-        // Scroll down = Bat
         if (scroll < 0f && hasBat)
         {
             EquipBat();
         }
     }
 
-    // Called when player picks up the pistol
+    // =========================
+    // PICKUPS
+    // =========================
+
     public void PickUpPistol()
     {
         hasPistol = true;
 
         Debug.Log("Picked up pistol!");
 
-        // Equip pistol immediately
         EquipPistol();
     }
 
-    // Called when player picks up the bat
     public void PickUpBat()
     {
         hasBat = true;
 
         Debug.Log("Picked up bat!");
 
-        // Equip bat immediately
         EquipBat();
     }
 
-    // Equip pistol
+    public void PickUpGrenadeLauncher()
+    {
+        hasGrenadeLauncher = true;
+
+        Debug.Log("Picked up grenade launcher!");
+
+        EquipGrenadeLauncher();
+    }
+
+    // =========================
+    // EQUIP WEAPONS
+    // =========================
+
     private void EquipPistol()
     {
-        bat.SetActive(false);
-        pistol.SetActive(true);
+        if (bat != null)
+            bat.SetActive(false);
+
+        if (grenadeLauncher != null)
+            grenadeLauncher.SetActive(false);
+
+        if (pistol != null)
+            pistol.SetActive(true);
 
         Debug.Log("Equipped Pistol");
     }
 
-    // Equip bat
     private void EquipBat()
     {
-        pistol.SetActive(false);
-        bat.SetActive(true);
+        if (pistol != null)
+            pistol.SetActive(false);
+
+        if (grenadeLauncher != null)
+            grenadeLauncher.SetActive(false);
+
+        if (bat != null)
+            bat.SetActive(true);
 
         Debug.Log("Equipped Bat");
+    }
+
+    private void EquipGrenadeLauncher()
+    {
+        if (pistol != null)
+            pistol.SetActive(false);
+
+        if (bat != null)
+            bat.SetActive(false);
+
+        if (grenadeLauncher != null)
+            grenadeLauncher.SetActive(true);
+
+        Debug.Log("Equipped Grenade Launcher");
     }
 }
