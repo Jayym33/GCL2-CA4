@@ -4,9 +4,14 @@ public class Gun : MonoBehaviour
 {
     [Header("Bullet Settings")]
     public GameObject bulletPrefab;
+    public Transform firePoint;
+
+    [Header("Aiming")]
+    public Camera playerCamera;
+    public float aimDistance = 100f;
 
     [Header("Weapon Stats")]
-    public float bulletSpeed = 40f;
+    public float bulletSpeed = 15f;
     public float fireRate = 3f;
     public int magazineSize = 15;
 
@@ -19,6 +24,12 @@ public class Gun : MonoBehaviour
     void Start()
     {
         currentAmmo = magazineSize;
+
+        // Automatically find the main camera
+        if (playerCamera == null)
+        {
+            playerCamera = Camera.main;
+        }
     }
 
     void Update()
@@ -45,38 +56,74 @@ public class Gun : MonoBehaviour
             return;
         }
 
-        // Use one bullet
         currentAmmo--;
 
-        // Spawn bullet
-        if (bulletPrefab != null)
+        // Check bullet prefab
+        if (bulletPrefab == null)
         {
-            GameObject bullet = Instantiate(
-                bulletPrefab,
-                transform.position,
-                transform.rotation
-            );
+            Debug.LogWarning("Bullet Prefab is not assigned!");
+            return;
+        }
 
-            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        // Check fire point
+        if (firePoint == null)
+        {
+            Debug.LogWarning("Fire Point is not assigned!");
+            return;
+        }
 
-            if (rb != null)
-            {
-                rb.linearVelocity = transform.forward * bulletSpeed;
-            }
-            else
-            {
-                Debug.LogWarning("Bullet prefab does not have a Rigidbody!");
-            }
+        // Check camera
+        if (playerCamera == null)
+        {
+            Debug.LogWarning("Player Camera is not assigned!");
+            return;
+        }
 
-            // Make crosshair expand when shooting
-            if (crosshair != null)
-            {
-                crosshair.OnShoot();
-            }
+        // Create a ray from the center of the camera
+        Ray ray = playerCamera.ViewportPointToRay(
+            new Vector3(0.5f, 0.5f, 0f)
+        );
+
+        Vector3 targetPoint;
+
+        // Check if the ray hits something
+        if (Physics.Raycast(ray, out RaycastHit hit, aimDistance))
+        {
+            targetPoint = hit.point;
         }
         else
         {
-            Debug.LogWarning("Bullet Prefab is not assigned!");
+            // If nothing is hit, shoot toward a point far away
+            targetPoint = ray.origin + ray.direction * aimDistance;
+        }
+
+        // Calculate direction from the FirePoint to the crosshair target
+        Vector3 shootDirection =
+            (targetPoint - firePoint.position).normalized;
+
+        // Spawn bullet at the FirePoint
+        GameObject bullet = Instantiate(
+            bulletPrefab,
+            firePoint.position,
+            Quaternion.LookRotation(shootDirection)
+        );
+
+        // Give bullet velocity toward the crosshair
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+
+        if (rb != null)
+        {
+            rb.linearVelocity = shootDirection * bulletSpeed;
+        }
+        else
+        {
+            Debug.LogWarning("Bullet prefab does not have a Rigidbody!");
+        }
+
+        // Expand crosshair
+        if (crosshair != null)
+        {
+            crosshair.OnShoot();
         }
 
         Debug.Log("Bang! Ammo Left: " + currentAmmo);
@@ -86,7 +133,6 @@ public class Gun : MonoBehaviour
     {
         currentAmmo += amount;
 
-        // Don't go above magazine size
         if (currentAmmo > magazineSize)
         {
             currentAmmo = magazineSize;
