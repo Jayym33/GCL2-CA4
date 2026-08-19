@@ -134,19 +134,6 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    /*public void Heal(int amount)
-    {
-        currentHealth += amount;
-
-        // Prevent health from going above max health
-        if (currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
-
-        Debug.Log("Player Health: " + currentHealth);
-    }*/
-
     private void Die()
     {
         Debug.Log("Player Died!");
