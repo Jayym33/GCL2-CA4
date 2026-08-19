@@ -19,19 +19,28 @@ public class MainMenu : MonoBehaviour
     }
 
     public void Credit()
-    {
+    { // Lock cursor during gameplay
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
         SceneManager.LoadScene("Credits");
     }
 
     public void Instruction()
     {
+        // Lock cursor during gameplay
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
         SceneManager.LoadScene("Instruction");
     }
 
     public void Back()
     {
+        // Lock cursor during gameplay
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         SceneManager.LoadScene("MainMenu");
     }
 
